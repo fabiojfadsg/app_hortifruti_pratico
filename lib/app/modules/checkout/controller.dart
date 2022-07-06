@@ -1,4 +1,5 @@
 
+import 'package:app_hortifruti_pratico/app/data/models/payment_method.dart';
 import 'package:app_hortifruti_pratico/app/data/models/shipping_by_city.dart';
 import 'package:app_hortifruti_pratico/app/data/services/cart/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/checkout/repository.dart';
@@ -28,5 +29,11 @@ class CheckoutController extends GetxController {
 
   num get total => totalCart + deliveryCost;
 
+  List<PaymentMethodModel> get paymentMethods => _cartService.store.value!.paymentMethods;
+  final paymentMethod = Rxn<PaymentMethodModel>();
+
+  void chagePaymentMethod(PaymentMethodModel? newPaymentMethod) {
+    paymentMethod.value = newPaymentMethod;
+  }
   
 }
